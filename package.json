@@ -1,5 +1,5 @@
 {
-  "name": "replace-brunch",
+  "name": "replacement-brunch",
   "version": "2.0.0",
   "description": "Perform generic replacement on your compiled files or assets.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/colinbate/replace-brunch.git"
+    "url": "git+https://github.com/colinbate/replacement-brunch.git"
   },
   "keywords": [
     "brunch",
@@ -21,9 +21,9 @@
   "author": "Colin Bate <colin@colinbate.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/colinbate/replace-brunch/issues"
+    "url": "https://github.com/colinbate/replacement-brunch/issues"
   },
-  "homepage": "https://github.com/colinbate/replace-brunch#readme",
+  "homepage": "https://github.com/colinbate/replacement-brunch#readme",
   "dependencies": {
     "anymatch": "^1.3.0"
   }

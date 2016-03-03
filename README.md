@@ -4,7 +4,7 @@ Perform generic replacements on your compiled files or assets.
 
 ## Config Options
 
-If you add a `replace` property to the plugins object in your brunch config you can configure this plugin.
+If you add a `replacement` property to the plugins object in your brunch config you can configure this plugin.
 
 There are two config options.
 

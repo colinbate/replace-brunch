@@ -5,7 +5,7 @@ const fs = require('fs');
 
 class ReplacePlugin {
   constructor(config) {
-    this.config = config && config.plugins && config.plugins.replace || {};
+    this.config = config && config.plugins && config.plugins.replacement || {};
     this.package = {};
     if (this.config.environment) {
       this.defaultEnv = this.config.environment;
