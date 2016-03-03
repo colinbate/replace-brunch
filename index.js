@@ -2,13 +2,18 @@
 const path = require('path');
 const anymatch = require('anymatch');
 const fs = require('fs');
+const glob = require('glob-fs');
 
 class ReplacePlugin {
   constructor(config) {
     this.config = config && config.plugins && config.plugins.replacement || {};
     this.package = {};
+    this.isProduction = false;
     if (this.config.environment) {
       this.defaultEnv = this.config.environment;
+    }
+    if (config.env && config.env[0] === 'production') {
+      this.isProduction = true;
     }
     if (config.paths.packageConfig) {
       const pconf = require(path.resolve(config.paths.packageConfig));
@@ -51,9 +56,30 @@ class ReplacePlugin {
   }
 
   onCompile(files, assets) {
-    let counter = 0;
-    const all = files.map(x => x.path).concat(assets.map(x => x.destinationPath))
-    all.forEach(file => {
+    let useFiles = files.map(x => x.path).concat(assets.map(x => x.destinationPath))
+    if (this.isProduction) {
+      useFiles = useFiles.reduce((p,f) => {
+        try {
+          fs.accessSync(f, fs.R_OK | fs.W_OK);
+        } catch (e) {
+          const ext = path.extname(f);
+          const dir = path.dirname(f);
+          const base = path.basename(f, ext);
+          const fglob = path.join(dir, base + '*' + ext);
+          const globber = glob();
+          const additional = globber.readdirSync(fglob);
+          return p.concat(additional);
+        }
+        return p.concat(f);
+      }, []);
+    };
+    this.doReplacement(useFiles);
+  }
+
+
+  doReplacement(allFiles) {
+    
+    allFiles.forEach(file => {
       let matchers = this.replacements.reduce((p,c) => c.files(file) ? p.concat(c.matches) : p, []);
       if (!matchers.length) {
         return;
@@ -61,12 +87,10 @@ class ReplacePlugin {
       let content = fs.readFileSync(file, 'utf8');
       matchers.forEach(m => {
         content = content.replace(m.find, m.replace);
-        counter++;
       });
       fs.writeFileSync(file, content, 'utf8');
     });
   }
-
 }
 
 ReplacePlugin.prototype.brunchPlugin = true;

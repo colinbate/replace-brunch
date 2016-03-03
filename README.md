@@ -1,6 +1,6 @@
 # replace-brunch
 
-Perform generic replacements on your compiled files or assets.
+Perform generic replacements on your compiled files or assets. In production mode plays well with `digest-brunch`.
 
 ## Config Options
 
