@@ -2,7 +2,7 @@
 const path = require('path');
 const anymatch = require('anymatch');
 const fs = require('fs');
-const glob = require('glob-fs');
+const glob = require('glob');
 
 class ReplacePlugin {
   constructor(config) {
@@ -66,8 +66,7 @@ class ReplacePlugin {
           const dir = path.dirname(f);
           const base = path.basename(f, ext);
           const fglob = path.join(dir, base + '*' + ext);
-          const globber = glob();
-          const additional = globber.readdirSync(fglob);
+          const additional = glob.sync(fglob);
           return p.concat(additional);
         }
         return p.concat(f);
