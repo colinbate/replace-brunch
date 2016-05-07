@@ -56,9 +56,12 @@ class ReplacePlugin {
   }
 
   onCompile(files, assets) {
-    let useFiles = files.map(x => x.path).concat(assets.map(x => x.destinationPath))
+    let useFiles = files.map(x => x.path).concat(assets.map(x => x.destPath))
     if (this.isProduction) {
       useFiles = useFiles.reduce((p,f) => {
+        if (!f) {
+          return p;
+        }
         try {
           fs.accessSync(f, fs.R_OK | fs.W_OK);
         } catch (e) {
@@ -79,6 +82,9 @@ class ReplacePlugin {
   doReplacement(allFiles) {
     
     allFiles.forEach(file => {
+      if (!file) {
+        return;
+      }
       let matchers = this.replacements.reduce((p,c) => c.files(file) ? p.concat(c.matches) : p, []);
       if (!matchers.length) {
         return;
