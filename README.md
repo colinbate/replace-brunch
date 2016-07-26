@@ -1,10 +1,10 @@
-# replace-brunch
+# replacement-brunch
 
 Perform generic replacements on your compiled files or assets. In production mode plays well with `digest-brunch`.
 
 ## Note
 
-Version 2.0.3 should be used with `brunch` >= 2.6.3, otherwise you should use 2.0.2.
+Version 2.0.3 should be used with `brunch` versions from 2.6.3 to 2.7.7, anything later can use 2.0.4 of this plugin.
 
 ## Config Options
 

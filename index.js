@@ -56,7 +56,7 @@ class ReplacePlugin {
   }
 
   onCompile(files, assets) {
-    let useFiles = files.map(x => x.path).concat(assets.map(x => x.destPath))
+    let useFiles = files.map(x => x.path).concat(assets.map(x => x.destinationPath))
     if (this.isProduction) {
       useFiles = useFiles.reduce((p,f) => {
         if (!f) {
