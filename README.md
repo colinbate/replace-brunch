@@ -4,7 +4,7 @@ Perform generic replacements on your compiled files or assets. In production mod
 
 ## Note
 
-Version 2.0.3 should be used with `brunch` versions from 2.6.3 to 2.7.7, anything later can use 2.0.4 of this plugin.
+Version 2.0.3 should be used with `brunch` versions from 2.6.3 to 2.7.7, anything later can use 2.0.5 of this plugin.
 
 ## Config Options
 
