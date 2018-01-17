@@ -1,6 +1,6 @@
 {
   "name": "replacement-brunch",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Perform generic replacement on your compiled files or assets.",
   "main": "index.js",
   "scripts": {
