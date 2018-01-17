@@ -46,9 +46,10 @@ class ReplacePlugin {
         }
         if (typeof m.replace === 'function') {
           let fn = m.replace;
-          m.replace = () => {
+          let pkg = this.package;
+          m.replace = function() {
             var args = Array.prototype.slice.call(arguments);
-            return fn(this.package, ...args);
+            return fn(pkg, ...args);
           };
         }
       });
